@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Основы работы со слотами в Vue.js</title>
+</head>
+<body>
+  <div id="app">
+    <h1>Основы работы со слотами в Vue.js</h1>
+    <todo-item>
+      Купить бананы
+      <template #description>
+        <p>Бананы полезны для здоровья</p>
+      </template>
+      <template #button-text>
+        Сделать хорошо
+      </template>
+    </todo-item>
+    <todo-item>Съесть бананы</todo-item>
+    <todo-item>Праздновать!</todo-item>
+  </div>
+
+  <script type="text/x-template" id="todo-item-template">
+    <div>
+      <input type="checkbox" v-model="done">
+      <span :class="{ done }">
+        <slot></slot>
+      </span>
+      <slot name="description"></slot>
+      <button><slot name="button-text">Выделить</slot></button>
+    </div>
+  </script>
+  <style>
+    .done{
+      color:green;
+      text-decoration: line-through;
+    }
+  </style>
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="app.js"></script>
+</body>
+</html>
